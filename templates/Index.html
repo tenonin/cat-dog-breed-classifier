@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classify your pet</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            margin-top: 0.5rem;
+        }
+
+        select {
+            margin-top: 1rem;
+            padding: 0.5rem;
+        }
+
+        button[type="submit"] {
+            margin-top: 1.5rem;
+            padding: 0.5rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0069D9;
+        }
+    </style>
+</head>
+<body>
+    <form action="/result" method="post" enctype="multipart/form-data">
+        <h1>Send an image of a cat or a dog</h1>
+        <label for="image">Select an image (JPEG):</label><br>
+        <input type="file" id="image" name="image" accept="image/jpeg" required><br><br>
+        
+        <label for="animal">The animal is a <strong>cat</strong> or a <strong>dog</strong></label><br>
+        <select id="animal" name="animal" required>
+            <option value="">Select...</option>
+            <option value="cat">Cat</option>
+            <option value="dog">Dog</option>
+        </select><br><br>
+        
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

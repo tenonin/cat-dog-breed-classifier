@@ -1,0 +1,13 @@
+Flask==3.0.2
+Flask-Cors==4.0.0
+matplotlib==3.8.3
+matplotlib-inline==0.1.6
+torch==2.2.1
+torchvision==0.17.1
+opencv_python==4.9.0.80
+google_cloud_vision==3.7.2
+gunicorn==20.1.0
+rembg==2.0.56
+colorthief==0.2.1
+scikit-image==0.22.0
+Werkzeug==3.0.2

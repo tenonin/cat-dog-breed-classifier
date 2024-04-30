@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification result</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #F3F4F6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            padding: 40px;
+            background-color: #FFF;
+            box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        p strong {
+            color: #555;
+        }
+
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media only screen and (max-width: 450px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size: 2rem;
+            color: #444;
+            background-color: #FFF;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            animation: rotate 1.4s linear infinite;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 1px solid #444;
+            border-top-color: #666;
+            width: 36px;
+            height: 36px;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="color">Classification result</h1>
+        <h2 id="color">The page color will change to animal predominant color soon...</h2>
+        <img src="{{ url_for('static', filename='./images/' + filename) }}" alt="Imagem do animal">
+        <p id="color">The animal was classified as <strong>{{name}}</strong>.</p>
+        <p id="color">With a probability of <strong>{{probability}}</strong></p>
+        <p id="color">Most predominant color on animal was <strong>{{color}}</strong></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $.getJSON(`/color?filename={{filename}}`, function(data) {
+        $("body").css("background-color", data.color);
+      });
+    });
+    </script>
+</body>
+</html>
